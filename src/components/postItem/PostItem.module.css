@@ -1,7 +1,6 @@
 .postItem {
     list-style: none;
     text-align: justify;
-    box-shadow: 1px 2px 4px #333333;
     padding: 1rem;
 }
 
@@ -9,6 +8,7 @@
 .postItem:active {
     background-color: rgba(0, 0, 0, 0.151);
     transition: background-color 100ms ease-in;
+    box-shadow: 1px 2px 4px #333333;
 }
 .postDetail {
     display: flex;
