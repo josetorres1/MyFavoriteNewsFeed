@@ -13,7 +13,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>My favorite Newsfeed Typography.js</h1>
+                <h1>My favorite Newsfeed</h1>
                 <nav>
                     <ul>
                         <li>
