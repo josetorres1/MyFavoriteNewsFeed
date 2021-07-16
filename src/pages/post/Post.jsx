@@ -13,7 +13,6 @@ const Post = () => {
         <section>
             <article>
                 <h2>{post.title}</h2>
-                <h2>{postId}</h2>
                 <div className="">
                     <p>{post.body}</p>
                 </div>

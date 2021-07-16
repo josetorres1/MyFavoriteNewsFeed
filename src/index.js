@@ -7,11 +7,9 @@ import { Provider } from "react-redux"
 import * as serviceWorker from "./serviceWorker"
 import Typography from "typography"
 import elkGlenTheme from "typography-theme-elk-glen"
-import injectFonts from "typography-inject-fonts"
 
 const typography = new Typography(elkGlenTheme)
 typography.injectStyles()
-injectFonts(typography)
 
 ReactDOM.render(
     <React.StrictMode>
