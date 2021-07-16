@@ -1,0 +1,16 @@
+.postItem {
+    list-style: none;
+}
+
+.postDetail {
+    display: flex;
+    align-items: center;
+}
+.postDetail > img {
+    margin: 0;
+}
+
+.postBody {
+    padding: 0 1.2rem;
+    max-width: 72%;
+}
