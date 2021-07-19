@@ -9,7 +9,7 @@ const PostItem = ({ title, body, postId }) => {
                 <div>
                     <h2>{title}</h2>
                     <div className={style.postDetail}>
-                        <img src="https://source.unsplash.com/user/erondu/160x160" alt="test" />
+                        <img src="https://source.unsplash.com/user/erondu/1920x1080" alt="test" />
                         <div className={style.postBody}>
                             <p>{body}</p>
                         </div>

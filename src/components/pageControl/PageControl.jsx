@@ -28,7 +28,7 @@ const PageControl = () => {
             {[...new Array(amountOfPages)].map((page, index) => {
                 return (
                     <button
-                        className={activePage === index + 1 && styles.active}
+                        className={activePage === index + 1 ? styles.active : null}
                         onClick={() => handleSelectPage(index + 1)}
                         key={index.toString()}
                     >
