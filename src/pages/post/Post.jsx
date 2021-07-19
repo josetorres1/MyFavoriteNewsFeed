@@ -1,14 +1,14 @@
 import React from "react"
+import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import { getPostByID, selectCommentsByPost } from "../../redux/slices"
 const Post = () => {
     const { postId } = useParams()
-    console.log(postId)
-    const post = {
-        userId: 1,
-        id: 1,
-        title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-        body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
-    }
+
+    const post = useSelector((state) => getPostByID(state, postId))
+    const commentsByPost = useSelector((state) => selectCommentsByPost(state, { postId }))
+    console.log(commentsByPost)
+
     return (
         <section>
             <article>
@@ -19,6 +19,16 @@ const Post = () => {
             </article>
             <div className="">
                 <h2>Comments</h2>
+                {commentsByPost.length ? (
+                    commentsByPost.map((comment) => (
+                        <div className="comment">
+                            <span>{`${comment.name} (${comment.email})`}</span>
+                            <p>{comment.body}</p>
+                        </div>
+                    ))
+                ) : (
+                    <div className="noComments">There are not comments for this post. </div>
+                )}
             </div>
         </section>
     )

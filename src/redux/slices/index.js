@@ -1,38 +1,41 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk, createEntityAdapter, createSelector } from "@reduxjs/toolkit"
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts")
         .then((data) => data.json())
         .then((posts) => {
-            console.log(posts)
             return posts
         })
-    console.log(response)
     return response
 })
 
+export const fetchComments = createAsyncThunk("comments/fetchComments", async () => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/comments").then((data) => data.json())
+    return response
+})
+
+const postsAdapter = createEntityAdapter()
+const commentsAdapter = createEntityAdapter()
 const initialState = {
-    posts: {
-        data: [],
+    posts: postsAdapter.getInitialState({
         status: "idle",
         error: null,
         page: 1,
-    },
-    comments: {
-        data: [],
+    }),
+    comments: commentsAdapter.getInitialState({
         status: "idle",
         error: null,
-    },
+    }),
 }
 export const postSlice = createSlice({
     name: "post",
     initialState: initialState.posts,
     reducers: {
         incrementPage(state) {
-            state.page = state.page + 1
+            state.page = state.page < (state.data.length / 10 || 1) ? state.page + 1 : state.page
         },
         decrementPage(state) {
-            state.page = state.page - 1
+            state.page = state.page > 1 ? state.page - 1 : state.page
         },
         selectPage(state, action) {
             state.page = action.payload.page
@@ -43,30 +46,47 @@ export const postSlice = createSlice({
             state.status = "loading"
         },
         [fetchPosts.fulfilled]: (state, action) => {
-            console.log(state)
             state.status = "fulfilled"
-            state.data = state.data.concat(action.payload)
+            postsAdapter.upsertMany(state, action.payload)
         },
     },
 })
 
+export const { incrementPage, decrementPage, selectPage } = postSlice.actions
+
 export const commentsSlice = createSlice({
     name: "comments",
     initialState: initialState.comments,
-    reducers: {},
+    reducers: {
+        addComment(state, action) {
+            commentsAdapter.addOne(state, action.payload)
+        },
+    },
+    extraReducers: {
+        [fetchComments.pending]: (state) => {
+            state.status = "loading"
+        },
+        [fetchComments.fulfilled]: (state, action) => {
+            state.status = "fulfilled"
+            commentsAdapter.upsertMany(state, action.payload)
+        },
+    },
 })
 
-export const AllPostsByPage = (state) => state.posts.data.slice(1 + (state.posts.page - 1) * 10, state.posts.page * 10)
+export const { addComment } = commentsSlice.actions
 
-export const getAmountOfPostPages = (state) => state.posts.data.length / 10
+export const { selectById: getPostByID, selectAll } = postsAdapter.getSelectors((state) => state.posts)
 
-export const getPostByID = (state, id) => {
-    console.log(typeof id)
-    console.log(state)
+export const AllPostsByPage = createSelector([selectAll, (state) => state.posts.page], (posts, activePage) =>
+    posts.slice((activePage - 1) * 10, activePage * 10)
+)
+export const getAmountOfPostPages = createSelector(selectAll, (posts) => posts.length / 10 || 1)
 
-    return state.posts.data.find((post) => post.id === Number(id))
-}
+export const { selectAll: selectAllComments, selectById } = commentsAdapter.getSelectors((state) => state.comments)
 
-export const selectCommentsByPost = (state, postId) => {
-    return state.comments.data.filter((comment) => comment.postId === postId)
-}
+export const selectCommentsByPost = createSelector(
+    [selectAllComments, (state, action) => action.postId],
+    (comments, postId) => {
+        return comments.filter((comment) => comment.postId === parseInt(postId))
+    }
+)

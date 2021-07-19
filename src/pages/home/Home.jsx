@@ -1,26 +1,43 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import PageControl from "../../components/pageControl/PageControl"
 import PostItem from "../../components/postItem/PostItem"
-
-const post = {
-    userId: 1,
-    id: 1,
-    title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-    body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
-}
+import { AllPostsByPage, fetchComments, fetchPosts } from "../../redux/slices"
 
 const Home = () => {
+    let content
+    const dispatch = useDispatch()
+    const posts = useSelector(AllPostsByPage)
+    const postsStatus = useSelector((state) => state.posts.status)
+    const commentsStatus = useSelector((state) => state.comments.status)
+
+    useEffect(() => {
+        if (postsStatus === "idle") {
+            dispatch(fetchPosts())
+        }
+        if (commentsStatus === "idle") {
+            dispatch(fetchComments())
+        }
+    }, [postsStatus, commentsStatus, dispatch])
+
+    if (postsStatus === "loading") {
+        content = <div>Loading latest news...</div>
+    } else if (postsStatus === "fulfilled") {
+        content = (
+            <ul>
+                {posts.map((e, i) => (
+                    <PostItem title={e.title} body={e.body} key={e.id} postId={e.id} />
+                ))}
+            </ul>
+        )
+    }
+
     return (
         <section>
             <h2>New posts</h2>
-            <div className="postList">
-                <ul>
-                    {Array(3)
-                        .fill(3)
-                        .map((e, i) => (
-                            <PostItem title={post.title} body={post.body} key={i.toString()} postId={i} />
-                        ))}
-                </ul>
-            </div>
+            <PageControl />
+            <div className="postList">{content}</div>
+            <PageControl />
         </section>
     )
 }
