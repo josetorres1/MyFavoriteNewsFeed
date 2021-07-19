@@ -26,7 +26,6 @@ const PageControl = () => {
                 {"<"}
             </button>
             {[...new Array(amountOfPages)].map((page, index) => {
-                console.log(index + 1, activePage, activePage === index + 1)
                 return (
                     <button
                         className={activePage === index + 1 && styles.active}
