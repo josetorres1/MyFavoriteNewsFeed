@@ -21,7 +21,7 @@ const Post = () => {
                 <h2>Comments</h2>
                 {commentsByPost.length ? (
                     commentsByPost.map((comment) => (
-                        <div className="comment">
+                        <div key={comment.id.toString()} className="comment">
                             <span>{`${comment.name} (${comment.email})`}</span>
                             <p>{comment.body}</p>
                         </div>
