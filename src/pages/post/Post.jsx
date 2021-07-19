@@ -2,6 +2,7 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { getPostByID, selectCommentsByPost } from "../../redux/slices"
+import styles from "./Post.module.css"
 const Post = () => {
     const { postId } = useParams()
 
@@ -21,9 +22,9 @@ const Post = () => {
                 <h2>Comments</h2>
                 {commentsByPost.length ? (
                     commentsByPost.map((comment) => (
-                        <div key={comment.id.toString()} className="comment">
-                            <span>{`${comment.name} (${comment.email})`}</span>
-                            <p>{comment.body}</p>
+                        <div key={comment.id.toString()} className={styles.comment}>
+                            <span>{`${comment.name.toLocaleUpperCase()} (${comment.email})`}</span>
+                            <blockquote>{comment.body}</blockquote>
                         </div>
                     ))
                 ) : (

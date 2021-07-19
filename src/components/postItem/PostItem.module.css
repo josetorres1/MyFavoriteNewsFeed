@@ -2,6 +2,7 @@
     list-style: none;
     text-align: justify;
     padding: 1rem;
+    border-radius: 15px;
 }
 
 .postItem:hover,

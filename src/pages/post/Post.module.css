@@ -1,0 +1,11 @@
+.comment {
+    border-radius: 15px;
+    border: 1px solid midnightblue;
+    margin: 1rem;
+    padding: 1rem 1rem 0;
+}
+
+.comment span {
+    display: block;
+    padding-bottom: 0.5rem;
+}

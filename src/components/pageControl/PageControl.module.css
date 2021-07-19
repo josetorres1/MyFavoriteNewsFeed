@@ -1,0 +1,14 @@
+button {
+    color: midnightblue;
+    margin: 1rem 0.3rem;
+    border-radius: 5px;
+}
+
+button:disabled {
+    color: slategrey;
+}
+
+button.active {
+    background-color: midnightblue;
+    color: #b9b9b9;
+}
