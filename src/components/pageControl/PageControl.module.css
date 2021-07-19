@@ -1,14 +1,14 @@
-button {
+.pageControl button {
     color: midnightblue;
     margin: 1rem 0.3rem;
     border-radius: 5px;
 }
 
-button:disabled {
+.pageControl button:disabled {
     color: slategrey;
 }
 
-button.active {
+.pageControl button.active {
     background-color: midnightblue;
     color: #b9b9b9;
 }

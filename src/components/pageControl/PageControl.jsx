@@ -21,7 +21,7 @@ const PageControl = () => {
     }
 
     return (
-        <div className="pageControl">
+        <div className={styles.pageControl}>
             <button disabled={activePage === 1} onClick={() => handleArrowControl("less")}>
                 {"<"}
             </button>

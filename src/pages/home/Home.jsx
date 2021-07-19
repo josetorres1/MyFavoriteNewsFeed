@@ -33,7 +33,7 @@ const Home = () => {
     }
 
     return (
-        <section>
+        <section style={{ maxWidth: "1024px" }}>
             <h2>New posts</h2>
             <PageControl />
             <div className="postList">{content}</div>

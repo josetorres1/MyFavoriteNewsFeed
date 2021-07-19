@@ -10,7 +10,7 @@ function App() {
         <Router>
             <div className="App">
                 <Header />
-                <main>
+                <main style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <Switch>
                         <Route exact path="/">
                             <Home />
