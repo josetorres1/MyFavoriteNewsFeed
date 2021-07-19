@@ -6,14 +6,20 @@ import { Provider } from "react-redux"
 import * as serviceWorker from "./serviceWorker"
 import Typography from "typography"
 import elkGlenTheme from "typography-theme-elk-glen"
+import { PersistGate } from "redux-persist/integration/react"
+import persistStore from "redux-persist/lib/persistStore"
 
 const typography = new Typography(elkGlenTheme)
 typography.injectStyles()
 
+const persistor = persistStore(store)
+
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App />
+            <PersistGate loading={null} persistor={persistor}>
+                <App />
+            </PersistGate>
         </Provider>
     </React.StrictMode>,
     document.getElementById("root")

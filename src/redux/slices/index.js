@@ -32,7 +32,8 @@ export const postSlice = createSlice({
     initialState: initialState.posts,
     reducers: {
         incrementPage(state) {
-            state.page = state.page < (state.data.length / 10 || 1) ? state.page + 1 : state.page
+            const total = selectTotal({ posts: state })
+            state.page = state.page < (total / 10 || 1) ? state.page + 1 : state.page
         },
         decrementPage(state) {
             state.page = state.page > 1 ? state.page - 1 : state.page
@@ -75,7 +76,7 @@ export const commentsSlice = createSlice({
 
 export const { addComment } = commentsSlice.actions
 
-export const { selectById: getPostByID, selectAll } = postsAdapter.getSelectors((state) => state.posts)
+export const { selectById: getPostByID, selectAll, selectTotal } = postsAdapter.getSelectors((state) => state.posts)
 
 export const AllPostsByPage = createSelector([selectAll, (state) => state.posts.page], (posts, activePage) =>
     posts.slice((activePage - 1) * 10, activePage * 10)
