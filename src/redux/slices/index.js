@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createEntityAdapter, createSelector } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk, createEntityAdapter, createSelector, nanoid } from "@reduxjs/toolkit"
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts")
@@ -59,8 +59,22 @@ export const commentsSlice = createSlice({
     name: "comments",
     initialState: initialState.comments,
     reducers: {
-        addComment(state, action) {
-            commentsAdapter.addOne(state, action.payload)
+        addComment: {
+            reducer(state, action) {
+                console.log(action)
+                commentsAdapter.addOne(state, action.payload)
+            },
+            prepare({ postId, name, email, body }) {
+                return {
+                    payload: {
+                        id: nanoid(),
+                        name,
+                        email,
+                        body,
+                        postId: parseInt(postId),
+                    },
+                }
+            },
         },
     },
     extraReducers: {
@@ -88,6 +102,6 @@ export const { selectAll: selectAllComments, selectById } = commentsAdapter.getS
 export const selectCommentsByPost = createSelector(
     [selectAllComments, (state, action) => action.postId],
     (comments, postId) => {
-        return comments.filter((comment) => comment.postId === parseInt(postId))
+        return comments.filter((comment) => comment.postId === parseInt(postId)).reverse()
     }
 )
