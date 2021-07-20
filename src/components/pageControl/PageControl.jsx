@@ -25,6 +25,24 @@ const PageControl = () => {
     dispatch(selectPage({ page }));
   };
 
+  /* Function that creates dynamically pages indicator base of the ammount in state above (amountOfPages) */
+  const createPagesIndicators = () => {
+    const indicators = [];
+    for (let index = 0; index < amountOfPages; index++) {
+      indicators[index] = (
+        <button
+          className={activePage === index + 1 ? styles.active : null}
+          onClick={() => handleSelectPage(index + 1)}
+          key={index.toString()}
+        >
+          {index + 1}
+        </button>
+      );
+    }
+
+    return indicators;
+  };
+
   return (
     <div className={styles.pageControl}>
       <button
@@ -33,17 +51,7 @@ const PageControl = () => {
       >
         {"<"}
       </button>
-      {[...new Array(amountOfPages)].map((page, index) => {
-        return (
-          <button
-            className={activePage === index + 1 ? styles.active : null}
-            onClick={() => handleSelectPage(index + 1)}
-            key={index.toString()}
-          >
-            {index + 1}
-          </button>
-        );
-      })}
+      {createPagesIndicators()}
       <button
         disabled={activePage === amountOfPages}
         onClick={() => handleArrowControl("more")}

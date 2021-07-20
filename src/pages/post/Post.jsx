@@ -23,7 +23,7 @@ const Post = () => {
     selectCommentsByPost(state, { postId })
   );
 
-  const sendComment = async (evt) => {
+  const sendComment = async () => {
     // evt.preventDefault()
     if (canSave) {
       try {
