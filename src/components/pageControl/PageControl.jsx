@@ -25,7 +25,8 @@ const PageControl = () => {
     dispatch(selectPage({ page }));
   };
 
-  /* Function that creates dynamically pages indicator base of the ammount in state above (amountOfPages) */
+  /* Function that creates dynamically page number indicators base on the
+   state above (amountOfPages) */
   const createPagesIndicators = () => {
     const indicators = [];
     for (let index = 0; index < amountOfPages; index++) {

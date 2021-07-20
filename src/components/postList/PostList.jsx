@@ -20,7 +20,7 @@ const PostList = () => {
 
   return (
     <div>
-      {postsStatus === "loading" && <div>Loading latest news...</div>}
+      {postsStatus === "loading" && <h3>Loading latest news...</h3>}
       {postsStatus === "fulfilled" && posts.length > 0 ? (
         <ul>
           {posts.map((e) => (
