@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import App from "./App";
-import store from "./redux/store";
+import App from "../App";
+import store from "../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import persistStore from "redux-persist/lib/persistStore";
 
