@@ -54,7 +54,7 @@ export const postSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchPosts.pending]: (state, action) => {
+    [fetchPosts.pending]: (state) => {
       state.status = "loading";
     },
     [fetchPosts.fulfilled]: (state, action) => {
