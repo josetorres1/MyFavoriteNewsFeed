@@ -1,42 +1,13 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import PageControl from "../../components/pageControl/PageControl";
-import PostItem from "../../components/postItem/PostItem";
-import { AllPostsByPage, fetchComments, fetchPosts } from "../../redux/slices";
+import PostList from "../../components/postList/PostList";
 
 const Home = () => {
-  let content;
-  const dispatch = useDispatch();
-  const posts = useSelector(AllPostsByPage);
-  const postsStatus = useSelector((state) => state.posts.status);
-  const commentsStatus = useSelector((state) => state.comments.status);
-
-  useEffect(() => {
-    if (postsStatus === "idle") {
-      dispatch(fetchPosts());
-    }
-    if (commentsStatus === "idle") {
-      dispatch(fetchComments());
-    }
-  }, [postsStatus, commentsStatus, dispatch]);
-
-  if (postsStatus === "loading") {
-    content = <div>Loading latest news...</div>;
-  } else if (postsStatus === "fulfilled") {
-    content = (
-      <ul>
-        {posts.map((e, i) => (
-          <PostItem title={e.title} body={e.body} key={e.id} postId={e.id} />
-        ))}
-      </ul>
-    );
-  }
-
   return (
     <section style={{ maxWidth: "1024px" }}>
       <h2>New posts</h2>
       <PageControl />
-      <div className="postList">{content}</div>
+      <PostList />
       <PageControl />
     </section>
   );
