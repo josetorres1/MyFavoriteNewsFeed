@@ -1,12 +1,12 @@
 .App {
-    padding: 1.5rem;
-    padding-top: 1.3rem;
+  padding: 1.5rem;
+  padding-top: 1.3rem;
 }
 nav > ul {
-    list-style: none;
-    display: flex;
+  list-style: none;
+  display: flex;
 }
 
 nav > ul > li {
-    padding: 1rem;
+  padding: 1rem;
 }

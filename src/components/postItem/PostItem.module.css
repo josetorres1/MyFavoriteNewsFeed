@@ -1,42 +1,42 @@
 .postItem {
-    list-style: none;
-    text-align: justify;
-    padding: 1rem;
-    border-radius: 15px;
+  list-style: none;
+  text-align: justify;
+  padding: 1rem;
+  border-radius: 15px;
 }
 
 .postItem:hover,
 .postItem:active {
-    background-color: rgba(0, 0, 0, 0.151);
-    transition: background-color 100ms ease-in;
-    box-shadow: 1px 2px 4px #333333;
+  background-color: rgba(0, 0, 0, 0.151);
+  transition: background-color 100ms ease-in;
+  box-shadow: 1px 2px 4px #333333;
 }
 .postDetail {
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 }
 
 .postDetail > img {
-    width: 160px;
-    height: 120px;
-    transition: transform 0.2s ease-in;
+  width: 160px;
+  height: 120px;
+  transition: transform 0.2s ease-in;
 }
 .postDetail > img:hover {
-    transform: scale(1.1);
-    width: 160px;
-    height: 120px;
+  transform: scale(1.1);
+  width: 160px;
+  height: 120px;
 }
 @media only screen and (min-width: 768px) {
-    .postDetail {
-        flex-direction: row;
-        align-items: center;
-    }
-    .postBody {
-        padding: 0 1.2rem;
-        max-width: 72%;
-    }
-    .postDetail > img {
-        margin: 0;
-    }
+  .postDetail {
+    flex-direction: row;
+    align-items: center;
+  }
+  .postBody {
+    padding: 0 1.2rem;
+    max-width: 72%;
+  }
+  .postDetail > img {
+    margin: 0;
+  }
 }

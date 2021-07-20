@@ -1,43 +1,43 @@
 .comment {
-    border-radius: 15px;
-    border: 1px solid midnightblue;
-    margin: 1rem;
-    padding: 1rem 1rem 0;
+  border-radius: 15px;
+  border: 1px solid midnightblue;
+  margin: 1rem;
+  padding: 1rem 1rem 0;
 }
 
 .comment span {
-    display: block;
-    padding-bottom: 0.5rem;
+  display: block;
+  padding-bottom: 0.5rem;
 }
 
 .addComment {
-    padding: 0.6rem;
+  padding: 0.6rem;
 }
 .addComment h3 {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .addComment input,
 textarea {
-    border: 1px solid midnightblue;
-    border-radius: 15px;
-    display: block;
-    padding: 0.5rem;
-    margin: 1rem 0;
-    width: 100%;
+  border: 1px solid midnightblue;
+  border-radius: 15px;
+  display: block;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  width: 100%;
 }
 
 .addComment button {
-    border: 1px solid midnightblue;
-    border-radius: 15px;
-    display: block;
-    padding: 0.5rem 2rem;
-    margin: 1rem 0;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    background-color: black;
-    color: ghostwhite;
+  border: 1px solid midnightblue;
+  border-radius: 15px;
+  display: block;
+  padding: 0.5rem 2rem;
+  margin: 1rem 0;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: black;
+  color: ghostwhite;
 }
 .addComment button:disabled {
-    background-color: gray;
+  background-color: gray;
 }
