@@ -2,7 +2,7 @@
 
 ## Introduction
 
-My favorite Newsreader is a projecto to showcase my abilies with:
+My favorite Newsreader is a project to showcase my abilies with:
 
 -   Javascript
 -   React
